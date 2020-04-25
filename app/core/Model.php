@@ -1,46 +1,50 @@
 <?php
 
+    namespace App\Core;
 
-class Model
-{
-    protected $db;
+    use PDO;
+    use PDOException;
 
-    public function __construct()
+    class Model
     {
-        try {
-            $this->db = new PDO(DNS, DBUSER, DBPASS);
-        } catch (PDOException $e) {
-            die(Log::writeLog('Подключение не удалось: ' . $e->getMessage()));
-        }
-    }
+        protected $db;
 
-    protected function fetch_all($query): array
-    {
-        try {
-            $fetch_assoc = $this->db->query($query);
-        } catch (PDOException $e) {
-            die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+        public function __construct()
+        {
+            try {
+                $this->db = new PDO(DNS, DBUSER, DBPASS);
+            } catch (PDOException $e) {
+                die(Log::writeLog('Подключение не удалось: ' . $e->getMessage()));
+            }
         }
-        return $fetch_assoc->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    protected function fetch_assoc($query)
-    {
-        try {
-            $fetch_assoc = $this->db->query($query);
-        } catch (PDOException $e) {
-            die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+        protected function fetch_all($query): array
+        {
+            try {
+                $fetch_assoc = $this->db->query($query);
+            } catch (PDOException $e) {
+                die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+            }
+            return $fetch_assoc->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $fetch_assoc->fetch(PDO::FETCH_ASSOC);
-    }
 
-    protected function query($query): void
-    {
-        try {
-            $this->db->exec($query);
-        } catch (PDOException $e) {
-            die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+        protected function fetch_assoc($query)
+        {
+            try {
+                $fetch_assoc = $this->db->query($query);
+            } catch (PDOException $e) {
+                die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+            }
+            return $fetch_assoc->fetch(PDO::FETCH_ASSOC);
         }
-    }
 
-}
+        protected function query($query): void
+        {
+            try {
+                $this->db->exec($query);
+            } catch (PDOException $e) {
+                die(Log::writeLog('Ошибка: ' . $e->getMessage()));
+            }
+        }
+
+    }

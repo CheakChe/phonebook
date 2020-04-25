@@ -1,18 +1,19 @@
 <?php
 
+    namespace App\Core;
 
-class Controller
-{
-
-    public function init()
+    class Controller
     {
 
-        $data['header'] = Router::render('layouts/header',
-            ['styles' => ['bootstrap.min', 'main.min']]);
+        public function init()
+        {
 
-        $data['footer'] = Router::render('layouts/footer',
-            ['scripts' => ['main']]);
+            $data['header'] = Router::render('layouts/header',
+                ['styles' => ['bootstrap.min', 'main.min']]);
 
-        return $data;
+            $data['footer'] = Router::render('layouts/footer',
+                ['scripts' => ['main']]);
+
+            return $data;
+        }
     }
-}

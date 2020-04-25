@@ -1,56 +1,68 @@
 <?php
 
-class Router
-{
-    private $url;
+    namespace App\Core;
 
-    public function __construct()
+    class Router
     {
-        $this->url = explode('/', $_SERVER['REQUEST_URI']);
-    }
+        private $url, $error = true;
 
-    public static function render($template, $vars = NULL)
-    {
-        if (file_exists('app/template/' . $template . '.php')) {
-            ob_start();
-            include 'app/template/' . $template . '.php';
-            $template = ob_get_clean();
-            return $template;
+        public function __construct()
+        {
+            $this->url = explode('/', $_SERVER['REQUEST_URI']);
         }
-    }
 
-    public function init()
-    {
-        $vars[] = (new Controller())->init();
-
-
-        if ($this->url[1] === '' || $this->url[1] === 'page') {
-            $vars['content'] = (new Index())->index();
-        } elseif ($this->url[1] === 'error') {
-            $vars['content'] = (new Error404())->index();
-        } else {
-            $vars['content'] = (new $this->url[1]())->index();
-        }
-        $this->view($vars);
-    }
-
-    private function view($vars)
-    {
-        $vars = $this->var($vars);
-        include_once 'app/public/index.php';
-    }
-
-    private function var($vars)
-    {
-        foreach ($vars as $key => $var) {
-            if (is_array($var)) {
-                foreach ($var as $key2 => $var_one) {
-                    $data[$key2] = $var_one;
-                }
-            } else {
-                $data[$key] = $var;
+        public static function render($template, $vars = NULL)
+        {
+            if (file_exists('app/template/' . $template . '.php')) {
+                ob_start();
+                include 'app/template/' . $template . '.php';
+                $template = ob_get_clean();
+                return $template;
             }
         }
-        return $data;
+
+        public function init(): void
+        {
+            $this->router();
+
+            if ($this->error === true) {
+                $this->router('/error', 'error');
+            }
+        }
+
+        private function router($url = '/', $class = 'index', $method = 'index', $vars = NULL): void
+        {
+            if ($this->url[1] === 'ajax') {
+                $class = 'App\\Components\\' . $this->url[2];
+                $method = $this->url[3] . 'Ajax';
+                (new $class())->$method();
+                $this->error = false;
+            } else if ($_SERVER['REQUEST_URI'] === $url || $url === '/error') {
+                $class = 'App\\Components\\' . $class;
+                $vars[] = (new Controller())->init();
+                $vars['content'] = (new $class())->$method();
+                $this->view($vars);
+                $this->error = false;
+            }
+        }
+
+        private function view($vars): void
+        {
+            $vars = $this->var($vars);
+            include_once 'app/public/index.php';
+        }
+
+        private function var($vars)
+        {
+            foreach ($vars as $key => $var) {
+                if (is_array($var)) {
+                    foreach ($var as $key2 => $var_one) {
+                        $data[$key2] = $var_one;
+                    }
+                } else {
+                    $data[$key] = $var;
+                }
+            }
+            return $data;
+        }
     }
-}
