@@ -1,0 +1,6 @@
+$brightness: brightness(0.8);
+
+button:hover,
+a:hover {
+  filter: $brightness;
+}
