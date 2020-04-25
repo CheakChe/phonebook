@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <button class="modal__open-add">Добавить запись</button>
+    </div>
     <div class="phones row justify-content-center mt-5">
         <div class="phones__items">
             <?php foreach ($vars['phones'] as $key => $item): ?>

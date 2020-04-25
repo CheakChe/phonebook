@@ -1,6 +1,6 @@
 <div class="modal form">
-    <form name="editPhone" method="POST" onsubmit="return false;">
-        <p>Редактирование телефонной записи номер <span></span></p>
+    <form name="Phone" method="POST" onsubmit="return false;">
+        <p></p>
         <div class="modal__second-name">
             <label for="second-name">Фамилия</label>
             <input type="text" required name="second-name" minlength="3" id="second-name" placeholder="Фамилия">
