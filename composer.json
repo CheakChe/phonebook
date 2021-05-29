@@ -1,15 +1,30 @@
 {
-  "name": "cheak/phonebook",
-  "description": "PhoneBook",
-  "authors": [
-    {
-      "name": "CheakChe",
-      "email": "saumonminiball@gmail.com"
+    "name": "cheak/phonebook",
+    "description": "PhoneBook",
+    "authors": [
+        {
+            "name": "CheakChe",
+            "email": "saumonminiball@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "php": "^7.1|^8.0",
+        "ext-pdo": "*",
+        "ext-json": "*",
+        "vlucas/phpdotenv": "^5.3",
+        "symfony/var-dumper": "^5.2"
+    },
+    "scripts": {
+        "server": [
+            "php -S localhost:8767"
+        ]
+    },
+    "config": {
+        "process-timeout": 0
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/"
-    }
-  }
 }
