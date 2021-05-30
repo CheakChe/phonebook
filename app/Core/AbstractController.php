@@ -4,14 +4,21 @@
 namespace App\Core;
 
 
+use App\Controllers\FooterController;
+use App\Controllers\HeaderController;
+use App\Exceptions\ViewException;
+
 abstract class AbstractController
 {
     abstract public function index();
 
+    /**
+     * @throws ViewException
+     */
     public function init(): array
     {
-        $data['header'] = Router::render('layouts/header', ['styles' => ['bootstrap.min', 'main.min']]);
-        $data['footer'] = Router::render('layouts/footer', ['scripts' => ['main']]);
+        $data['header'] = (new HeaderController)->index();
+        $data['footer'] = (new FooterController)->index();
 
         return $data;
     }

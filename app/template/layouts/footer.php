@@ -1,8 +1,6 @@
-<footer>
-
-</footer>
-<?php if (!empty($vars['scripts'])): ?>
-    <?php foreach ($vars['scripts'] as $key => $item): ?>
+<footer></footer>
+<?php if (!empty($this->scripts)): ?>
+    <?php foreach ($this->scripts as $key => $item): ?>
         <script src="/app/public/js/<?= $item ?>.js"></script>
     <?php endforeach; ?>
 <?php endif; ?>

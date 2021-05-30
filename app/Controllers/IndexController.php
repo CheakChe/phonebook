@@ -8,7 +8,7 @@ use App\Core\Log;
 use App\Core\Router;
 use App\Models\PhoneModel;
 
-class Index extends AbstractController
+class IndexController extends AbstractController
 {
     private $phonemodel;
 
@@ -25,7 +25,7 @@ class Index extends AbstractController
         return Router::render('main', $data);
     }
 
-    public function PhoneAjax()
+    public function Phone()
     {
         $response = NULL;
         try {
@@ -63,7 +63,7 @@ class Index extends AbstractController
         }
     }
 
-    public function deletePhoneAjax()
+    public function deletePhone()
     {
         $response = NULL;
         try {

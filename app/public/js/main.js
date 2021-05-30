@@ -30,7 +30,8 @@ if (phone) {
     phone.addEventListener('submit', function () {
         let xhr = new XMLHttpRequest();
         let url = modal.querySelector('form').getAttribute('class');
-        xhr.open('POST', '/ajax/index/Phone');
+        xhr.open('POST', '/addPhone');
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         let formData = new FormData(document.forms.Phone);
         if (url === 'addPhone') {
             formData.append("add", 'true');

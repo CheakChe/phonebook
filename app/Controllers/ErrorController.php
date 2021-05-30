@@ -7,7 +7,7 @@ namespace App\Controllers;
 use App\Core\AbstractController;
 use App\Core\Router;
 
-class Error extends AbstractController
+class ErrorController extends AbstractController
 {
 
     public function index()
