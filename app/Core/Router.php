@@ -35,20 +35,6 @@ class Router
     /**
      * @throws RouterException
      */
-    public static function render($template, $vars = [])
-    {
-        if (!file_exists('app/template/' . $template . '.php')) {
-            throw new RouterException('not template');
-        }
-        extract($vars);
-        ob_start();
-        include 'app/template/' . $template . '.php';
-        return ob_get_clean();
-    }
-
-    /**
-     * @throws RouterException
-     */
     public function init(): void
     {
         if (!array_key_exists($this->url, self::$paths[$this->httpMethod])){
@@ -81,12 +67,13 @@ class Router
         $vars[] = $error->init();
         $vars['content'] = $error->index();
         $this->view($vars);
+        die;
     }
 
     private function view($vars): void
     {
         $vars = $this->var($vars);
-        include_once 'app/public/index.php';
+        include_once './public/index.php';
     }
 
     private function var($vars)
@@ -107,7 +94,7 @@ class Router
      * Добавление пути в Router.
      *
      * @param string $name Название функции.
-     * @param array $arguments Параметры передаваемые в неё.
+     * @param array $arguments Параметры передаваемые в неё. Пример: '/', [Controller::class, 'index'].
      * @option string $arguments[0] Путь.
      * @option string $arguments[1][0] Контроллер для запуска.
      * @option ?string $arguments[1][1] Вызываемый метод. По умолчанию: index.

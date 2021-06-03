@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 use App\Core\AbstractController;
 use App\Core\Log;
-use App\Core\Router;
+use App\Exceptions\ViewException;
 use App\Models\PhoneModel;
 
 class IndexController extends AbstractController
@@ -17,12 +17,15 @@ class IndexController extends AbstractController
         $this->phonemodel = new PhoneModel();
     }
 
-    public function index()
+    /**
+     * @throws ViewException
+     */
+    public function index(): bool|string
     {
         $data['phones'] = $this->phonemodel->allPhone();
-        $data['modal'] = Router::render('layouts/modal');
+        $data['modal'] = view('layouts/modal');
 
-        return Router::render('main', $data);
+        return view('main', $data);
     }
 
     public function Phone()

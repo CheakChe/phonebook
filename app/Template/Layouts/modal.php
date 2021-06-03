@@ -12,7 +12,7 @@
         </div>
         <input type="hidden" name="id" id="id">
         <button type="submit">Сохранить</button>
-        <button type="button" class="modal__close"><img src="/app/public/img/svg/close.svg" alt="close"></button>
+        <button type="button" class="modal__close"><img src="/public/img/svg/close.svg" alt="close"></button>
     </form>
 </div>
 <div class="modal message">

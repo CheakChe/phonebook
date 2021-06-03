@@ -21,7 +21,7 @@ class View
     public function render(string $template, array|null $properties = NULL): bool|string
     {
         if (!file_exists(self::PATH . "$template.php")) {
-            throw new ViewException('not template');
+            throw new ViewException('Такого шаблона не существует.');
         }
 
         if (!empty($properties)) {

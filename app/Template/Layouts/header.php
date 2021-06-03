@@ -8,7 +8,7 @@
     <title><?= env('WEBSITE_NAME') ?></title>
     <?php if (!empty($this->styles)): ?>
         <?php foreach ($this->styles as $key => $item): ?>
-            <link rel="stylesheet" href="/app/public/css/<?= $item ?>.css">
+            <link rel="stylesheet" href="./public/css/<?= $item ?>.css">
         <?php endforeach; ?>
     <?php endif; ?>
 </head>

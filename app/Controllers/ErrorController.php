@@ -5,13 +5,16 @@ namespace App\Controllers;
 
 
 use App\Core\AbstractController;
-use App\Core\Router;
+use App\Exceptions\ViewException;
 
 class ErrorController extends AbstractController
 {
 
-    public function index()
+    /**
+     * @throws ViewException
+     */
+    public function index(): bool|string
     {
-        return Router::render('layouts/error');
+        return view('layouts/error');
     }
 }

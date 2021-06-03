@@ -4,7 +4,7 @@
     </div>
     <div class="phones row justify-content-center mt-5">
         <div class="phones__items">
-            <?php foreach ($vars['phones'] as $key => $item): ?>
+            <?php foreach ($this->phones as $key => $item): ?>
                 <div class="phones__item item-<?= $item['id'] ?>">
                     <p>
                         <span class="phones__number"><?= $key + 1 ?></span>
@@ -19,4 +19,4 @@
         </div>
     </div>
 </div>
-<?= htmlspecialchars_decode($vars['modal']) ?>
+<?= htmlspecialchars_decode($this->modal) ?>
