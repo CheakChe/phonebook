@@ -1,1 +1,1 @@
-PHP 7.1 MariaDB 10.3
+PHP 8.0 MariaDB 10.3

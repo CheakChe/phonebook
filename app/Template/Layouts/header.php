@@ -6,11 +6,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= env('WEBSITE_NAME') ?></title>
-    <?php if (!empty($this->styles)): ?>
-        <?php foreach ($this->styles as $key => $item): ?>
-            <link rel="stylesheet" href="./public/css/<?= $item ?>.css">
-        <?php endforeach; ?>
-    <?php endif; ?>
 </head>
 <body>
 <header></header>

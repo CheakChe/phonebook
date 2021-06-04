@@ -6,6 +6,7 @@ $grey: #495057;
 
 //TODO BASIC
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 .font-family, p, a, h1, h2, h3, h4, button, td, label, input, ::placeholder {
   font-family: 'Oswald', sans-serif;

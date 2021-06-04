@@ -15,6 +15,6 @@ class HeaderController extends AbstractController
      */
     public function index(): bool|string
     {
-        return view('layouts/header', ['styles' => ['bootstrap.min', 'main.min']]);
+        return view('layouts/header');
     }
 }

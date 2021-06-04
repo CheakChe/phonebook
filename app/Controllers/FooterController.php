@@ -15,6 +15,6 @@ class FooterController extends AbstractController
      */
     public function index(): bool|string
     {
-        return view('layouts/footer', ['scripts' => ['main']]);
+        return view('layouts/footer', ['scripts' => ['index.min']]);
     }
 }
