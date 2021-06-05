@@ -1,0 +1,16 @@
+GET http://localhost:8767
+Accept: text/html
+
+###
+
+
+POST http://localhost:8767/news
+X-Requested-With: XMLHttpRequest
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": 2
+}
+
+###

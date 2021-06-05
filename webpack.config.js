@@ -2,10 +2,13 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    entry: ['./app/Resource/js/index.js', './app/Resource/scss/index.scss'],
+    entry: {
+        'js/index.min.js': './app/Resource/js/index.js',
+        'css/index.min.css': './app/Resource/scss/index.scss'
+    },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: "js/index.min.js"
+        filename: "[name]"
     },
     devtool: "source-map",
 

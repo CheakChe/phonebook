@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 use App\Core\AbstractController;
 use App\Core\Log;
+use App\Core\Request;
 use App\Exceptions\ViewException;
 use App\Models\PhoneModel;
 
@@ -20,7 +21,7 @@ class IndexController extends AbstractController
     /**
      * @throws ViewException
      */
-    public function index(): bool|string
+    public function index(Request $request): bool|string
     {
         $data['phones'] = $this->phonemodel->allPhone();
         $data['modal'] = view('layouts/modal');
@@ -28,7 +29,7 @@ class IndexController extends AbstractController
         return view('main', $data);
     }
 
-    public function Phone()
+    public function phone()
     {
         $response = NULL;
         try {
@@ -59,10 +60,10 @@ class IndexController extends AbstractController
             } else {
                 $response['message'] = 'Не все поля заполнены.';
             }
-            echo json_encode($response);
+            return json_encode($response);
 
         } catch (\Exception $e) {
-            die(Log::writeLog($e->getMessage()));
+            throw new \Exception($e->getMessage(), $e->getCode());
         }
     }
 
@@ -85,4 +86,8 @@ class IndexController extends AbstractController
         }
     }
 
+    public function news(Request $request)
+    {
+        dd($request);
+    }
 }

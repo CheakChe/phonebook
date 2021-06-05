@@ -10,7 +10,6 @@ use App\Exceptions\ViewException;
 
 abstract class AbstractController
 {
-    abstract public function index();
 
     /**
      * @throws ViewException
